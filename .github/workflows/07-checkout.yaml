@@ -1,0 +1,13 @@
+name: checkout 
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout 
+        uses: actions/checkout@v6
+      - name: Display the content 
+        run: |
+          ls 
+          pwd 
+          ls -la
