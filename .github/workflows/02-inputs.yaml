@@ -1,0 +1,29 @@
+name: Inputs
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment to deploy to'
+        required: true
+        type: choice
+        options:
+          - DEV
+          - PROD
+      run_tests:
+        description: 'Execute unit tests before deploying?'
+        required: false
+        type: boolean
+        default: true
+      version_tag:
+        description: 'Version tag (e.g., v1.0.0)'
+        required: true
+        type: string
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output chosen parameters
+        run: |
+          echo "Deploying to: ${{ inputs.environment }}"
+          echo "Run tests? ${{ inputs.run_tests }}"
+          echo "Version: ${{ inputs.version_tag }}"
